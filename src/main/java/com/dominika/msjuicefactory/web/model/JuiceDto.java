@@ -1,5 +1,6 @@
 package com.dominika.msjuicefactory.web.model;
 
+import java.math.BigDecimal;
 import java.util.UUID;
 
 import lombok.AllArgsConstructor;
@@ -14,6 +15,7 @@ import lombok.NoArgsConstructor;
 public class JuiceDto {
     private UUID id;
     private String juiceName;
-    private String juiceStyle;
+    private JuiceStyleEnum juiceStyle;
+    private BigDecimal price;
     private Long upc;
 }

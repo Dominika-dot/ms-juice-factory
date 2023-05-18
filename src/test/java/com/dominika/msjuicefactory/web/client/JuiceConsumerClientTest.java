@@ -1,10 +1,12 @@
 package com.dominika.msjuicefactory.web.client;
 
+import java.math.BigDecimal;
 import java.net.URI;
 import java.util.UUID;
 
 import com.dominika.msjuicefactory.web.model.CustomerDto;
 import com.dominika.msjuicefactory.web.model.JuiceDto;
+import com.dominika.msjuicefactory.web.model.JuiceStyleEnum;
 import lombok.val;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,15 +28,13 @@ class JuiceConsumerClientTest {
 
     @Test
     void saveNewJuice() {
-        JuiceDto juiceDto = JuiceDto.builder().juiceName("MyJuice").build();
-        val uri = juiceConsumerClient.saveNewJuice(juiceDto);
+        val uri = juiceConsumerClient.saveNewJuice(getValidJuiceDto());
         assertNotNull(uri);
     }
 
     @Test
     void updateJuice() {
-        JuiceDto juiceDto = JuiceDto.builder().juiceName("MyJuice").build();
-        juiceConsumerClient.updateJuice(UUID.randomUUID(), juiceDto);
+        juiceConsumerClient.updateJuice(UUID.randomUUID(), getValidJuiceDto());
     }
 
     @Test
@@ -64,5 +64,14 @@ class JuiceConsumerClientTest {
     @Test
     void deleteCustomer() {
         juiceConsumerClient.deleteCustomer(UUID.randomUUID());
+    }
+
+    JuiceDto getValidJuiceDto(){
+        return JuiceDto.builder()
+            .juiceName("Orange juice")
+            .juiceStyle(JuiceStyleEnum.FRESH)
+            .price(new BigDecimal("10.22"))
+            .upc(1526342563765L)
+            .build();
     }
 }
