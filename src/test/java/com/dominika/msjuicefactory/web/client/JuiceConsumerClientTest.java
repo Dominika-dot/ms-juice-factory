@@ -5,6 +5,7 @@ import java.util.UUID;
 
 import com.dominika.msjuicefactory.web.model.CustomerDto;
 import com.dominika.msjuicefactory.web.model.JuiceDto;
+import lombok.val;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -26,7 +27,7 @@ class JuiceConsumerClientTest {
     @Test
     void saveNewJuice() {
         JuiceDto juiceDto = JuiceDto.builder().juiceName("MyJuice").build();
-        URI uri = juiceConsumerClient.saveNewJuice(juiceDto);
+        val uri = juiceConsumerClient.saveNewJuice(juiceDto);
         assertNotNull(uri);
     }
 
